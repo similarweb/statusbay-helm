@@ -1,0 +1,22 @@
+apiVersion: v2
+name: statusbay
+version: 0.1.0
+appVersion: 1.0.0
+description: Kubernetes deployment visibility
+keywords:
+    - kubernetes
+    - deployment
+    - visibility
+home: statusbay.io
+icon: https://todo.com
+sources:
+    - https://github.com/similarweb/statusbay
+maintainers:
+    - name: Elad Kaplan
+      email: elad.kaplan@similarweb.com
+    - name  : Isan Rivkin
+      email: isan.rivkin@similarweb.com
+    - name: Or Tzabary
+      email: or.tzabary@similarweb.com
+    - name: Costya Regev
+      email: costyar@similarweb.com

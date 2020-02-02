@@ -1,0 +1,14 @@
+{{- if (eq .Values.database.type "internal") -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: "{{ template "statusbay.database" . }}"
+  labels:
+{{ include "statusbay.labels" . | indent 4 }}
+spec:
+  ports:
+    - port: 3306
+  selector:
+{{ include "statusbay.matchLabels" . | indent 4 }}
+    component: database
+{{- end -}}

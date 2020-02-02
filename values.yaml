@@ -1,0 +1,94 @@
+
+
+image:
+  repository: eladkaplan1/statusbay
+  tag: 1.5
+  pullPolicy: Always
+
+database:
+  type: internal
+  internal:
+    image:
+      pullPolicy: Always
+    # resources:
+    #  requests:
+    #    memory: 256Mi
+    #    cpu: 100m
+    persistence:
+      persistentVolumeClaim:      
+        accessMode: ReadWriteOnce
+        storageClass: "-" 
+        size: 1Gi
+    
+  external:
+    host: 192.168.0.1
+    port: 3306
+    username: root
+    password: changeme
+    schema: statusbay
+
+ingress:
+  api:
+    annotations: {}
+    host: api.statusbay.domain
+
+service:
+  api:
+    type: ClusterIP
+    annotations: {}
+    externalPort: 80
+
+rbac:
+  create: true
+
+serviceAccount:
+  create: true
+  name: 
+
+api:
+  create: true
+  replicas: 1
+  deploymentAnnotations: {}
+  application:
+    log_level: info
+    metrics:
+      # datadog:
+        # api_key: 
+        # app_key: 
+        # cache_cleanup_interval: 1m
+        # cache_expiration: 3m
+      # prometheus:
+        # Address: 
+    alerts:
+      # statuscake:
+        # endpoint: https://app.statuscake.com/API
+        # username:
+        # api_key: 
+      # pingdom:
+        # endpoint: https://api.pingdom.com/api
+        # token: 
+  # resources:
+  #   requests:
+  #     cpu: 100m
+  #     memory: 128Mi
+
+watcher:
+  kubernetes:
+    create: true
+    deploymentAnnotations: {}
+    application:
+      log_level: info
+      ui:
+        base_url: todo
+      applies:
+        save_interval: 2s
+        max_apply_time: 10m
+        check_finish_delay: 5s
+        collect_data_after_apply_finish: 10s
+    # resources:
+    #   requests:
+    #     cpu: 100m
+    #     memory: 128Mi
+
+
+

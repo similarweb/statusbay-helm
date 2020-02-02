@@ -1,0 +1,62 @@
+{{- if (eq .Values.database.type "internal") -}}
+{{- $database := .Values.database.internal -}}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: "{{ template "statusbay.database" . }}"
+  labels:
+{{ include "statusbay.labels" . | indent 4 }}
+    component: database
+spec:
+  selector:
+    matchLabels:
+{{ include "statusbay.matchLabels" . | indent 6 }}
+      component: database
+  serviceName: "{{ template "statusbay.database" . }}"
+  replicas: 1
+  template:
+    metadata:
+       labels:
+{{ include "statusbay.labels" . | indent 8 }}
+        component: database
+    spec:
+      containers:
+      - name: mysql
+        image: mysql:5.7
+        imagePullPolicy: {{ $database.image.pullPolicy }}
+        env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: "1234"
+        - name: MYSQL_DATABASE
+          value: "statusbay"
+        ports:
+        - name: mysql
+          containerPort: 3306
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/mysql
+          subPath: mysql
+        livenessProbe:
+          exec:
+            command: ["mysqladmin","-p1234", "ping"]
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+        readinessProbe:
+          exec:
+            command: ["mysql", "-h", "127.0.0.1","-p1234","-e", "SELECT 1"]
+          initialDelaySeconds: 5
+          periodSeconds: 2
+          timeoutSeconds: 1
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: [{{ $database.persistence.persistentVolumeClaim.accessMode | quote }}]
+      {{- if not (eq "-" $database.persistence.persistentVolumeClaim.storageClass) }}
+      storageClassName: "{{ $database.persistence.persistentVolumeClaim.storageClass }}"
+      {{- end }}
+      resources:
+        requests:
+          storage: {{ $database.persistence.persistentVolumeClaim.size | quote }}
+{{- end }}

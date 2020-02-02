@@ -1,0 +1,25 @@
+{{- if .Values.api.create  -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "statusbay.fullname" . }}-configmap-api
+  labels:
+{{ include "statusbay.labels" . | indent 4 }}
+data: 
+  config: |-
+    ---
+    log_level: {{ .Values.api.application.log_level  }}
+    mysql:
+      dns: "{{ template "statusbay.database.host" . }}"
+      port: {{ template "statusbay.database.port" . }}
+      username: "{{ template "statusbay.database.username" . }}"
+      password: "{{ template "statusbay.database.rawPassword" . }}"
+      schema: "statusbay"    
+
+    metrics:
+      {{- toYaml .Values.api.application.metrics | nindent 6 }}
+    
+    alerts:
+      {{- toYaml .Values.api.application.alerts | nindent 6 }}
+      
+{{- end -}}

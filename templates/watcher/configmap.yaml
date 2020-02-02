@@ -1,0 +1,26 @@
+{{- if .Values.watcher.kubernetes.create  -}}
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "statusbay.fullname" . }}-configmap-watcher-kubernetes
+  labels:
+{{ include "statusbay.labels" . | indent 4 }}
+data: 
+  config: |-
+    ---
+    log_level: {{ .Values.watcher.kubernetes.application.log_level }}""
+    mysql:
+      dns: "{{ template "statusbay.database.host" . }}"
+      port: {{ template "statusbay.database.port" . }}
+      username: "{{ template "statusbay.database.username" . }}"
+      password: "{{ template "statusbay.database.rawPassword" . }}"
+      schema: "statusbay"    
+    slack:
+      token: xoxb-3292636427-648819785415-Jp4wnWd2p56tBK2E32CUYwbD
+      default_channels:
+        - '#elad_test'
+    ui:
+      {{- toYaml .Values.watcher.kubernetes.application.ui | nindent 6 }}
+    applies:
+      {{- toYaml .Values.watcher.kubernetes.application.applies | nindent 6 }}
+{{- end -}}
