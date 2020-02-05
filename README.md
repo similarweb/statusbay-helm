@@ -1,13 +1,27 @@
-Helm Chart for Statusbay
+# Helm Chart for Statusbay
 
 
+## Installation
 
+Clone the git repository
+```bash
+git clone git@github.com:similarweb/statusbay-helm.git && cd statusbay-helm
+```
 
+Install the StatusBay helm chart with a release name `my-release`:
 
+helm 2:
+```bash
+helm install --name my-release .
+```
+helm 3:
+```bash
+helm install my-release .
+```
 
 ## Configuration
 
-The following table lists the configurable parameters of the Statusbay chart.                                                                                                                        
+The following table lists the configurable parameters of the Statusbay chart.      
 Parameter | Description | Default
 --- | --- | ---
 `image.repository` | container image repository | `eladkaplan1/statusbay`

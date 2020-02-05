@@ -1,5 +1,5 @@
 image:
-  repository: eladkaplan1/statusbay
+  repository: similarweb/statusbay
   tag: 1.5
   pullPolicy: Always
 
