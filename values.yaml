@@ -49,8 +49,10 @@ api:
   create: true
   replicas: 2
   annotations: {}
-  application:
-    log_level: info
+  application:    
+    log:
+      level: INFO
+      # gelf_address: 127.0.0.1
     metrics:
       # datadog:
       #   api_key: example-api-key
@@ -77,7 +79,9 @@ watcher:
     create: true
     annotations: {}
     application:
-      log_level: info
+      log:
+        level: INFO
+        # gelf_address: 127.0.0.1
       ui:
         base_url: todo
       applies:

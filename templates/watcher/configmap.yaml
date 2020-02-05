@@ -8,7 +8,8 @@ metadata:
 data: 
   config: |-
     ---
-    log_level: {{ .Values.watcher.kubernetes.application.log_level }}""
+    log:
+      {{- toYaml  .Values.watcher.kubernetes.application.log | nindent 6 }}
     mysql:
       dns: "{{ template "statusbay.database.host" . }}"
       port: {{ template "statusbay.database.port" . }}
