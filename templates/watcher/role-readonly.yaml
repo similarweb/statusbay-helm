@@ -1,0 +1,36 @@
+
+{{- if and (.Values.rbac.create) (.Values.watcher.kubernetes.create)  }}
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: "{{ template "statusbay.fullname" . }}-readonly"
+  namespace: {{ .Release.Namespace }}
+  labels:
+{{ include "statusbay.labels" . | indent 4 }}
+rules:
+  - apiGroups:
+      - ""
+    resources:
+      - events
+      - pods
+      - replicationcontrollers
+      - services
+      - nodes
+    verbs:
+      - get
+      - list
+      - watch
+
+  - apiGroups:
+      - apps
+    resources:
+      - controllerrevisions
+      - daemonsets
+      - deployments
+      - replicasets
+      - statefulsets
+    verbs:
+      - get
+      - list
+      - watch
+{{- end -}}

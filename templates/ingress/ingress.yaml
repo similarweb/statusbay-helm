@@ -1,0 +1,21 @@
+{{- if .Values.api.create -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ template "statusbay.fullname" . }}
+  labels:
+{{ include "statusbay.labels" . | indent 4 }}
+{{- if .Values.ingress.api.annotations }}
+  annotations:
+{{ toYaml .Values.ingress.api.annotations | indent 4 }}
+{{- end }}
+spec:
+  rules:
+    - host: {{ .Values.ingress.api.host }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: {{ include "statusbay.fullname" . }}-api
+              servicePort: {{ .Values.service.api.externalPort }}
+{{- end -}}

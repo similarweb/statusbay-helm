@@ -1,0 +1,41 @@
+{{- if .Values.watcher.kubernetes.create  -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "statusbay.fullname" . }}-watcher-kubernetes
+  labels:
+{{ include "statusbay.labels" . | indent 4 }}
+    component: {{ include "statusbay.fullname" . }}-watcher-kubernetes
+  annotations:
+{{ toYaml .Values.watcher.kubernetes.annotations | indent 4}}
+spec:
+  selector:
+    matchLabels:
+{{ include "statusbay.matchLabels" . | indent 6 }}
+      component: {{ include "statusbay.fullname" . }}-watcher-kubernetes
+  replicas: 1
+  template:
+    metadata:
+      labels:
+{{ include "statusbay.labels" . | indent 8 }}
+        component: {{ include "statusbay.fullname" . }}-watcher-kubernetes
+    spec:
+      serviceAccountName: {{ template "statusbay.serviceAccountName" . }}
+      containers:
+        - name: {{ .Chart.Name }}-watcher-kubernetes
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args: [ "--mode", "kubernetes" ]
+          volumeMounts:
+            - name: {{ include "statusbay.fullname" . }}-configmap-watcher-kubernetes
+              mountPath: /etc/statusbay
+          resources:
+            {{- toYaml .Values.watcher.kubernetes.resources | nindent 12 }}
+      volumes:
+        - name: {{ include "statusbay.fullname" . }}-configmap-watcher-kubernetes
+          configMap:
+            name: {{ include "statusbay.fullname" . }}-configmap-watcher-kubernetes
+            items:
+              - key: config
+                path: config.yaml
+{{- end -}}

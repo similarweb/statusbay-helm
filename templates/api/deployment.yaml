@@ -1,0 +1,41 @@
+{{- if .Values.api.create  -}}
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "statusbay.fullname" . }}-api
+  labels:
+{{ include "statusbay.labels" . | indent 4 }}
+    component: {{ include "statusbay.fullname" . }}-api
+  annotations:
+{{ toYaml .Values.api.annotations | indent 4}}
+spec:
+  selector:
+    matchLabels:
+{{ include "statusbay.matchLabels" . | indent 6 }}
+      component: {{ include "statusbay.fullname" . }}-api
+  replicas: {{ .Values.api.replicas }}
+  template:
+    metadata:
+      labels:
+{{ include "statusbay.labels" . | indent 8 }}
+        component: {{ include "statusbay.fullname" . }}-api
+    spec:
+      serviceAccountName: {{ template "statusbay.serviceAccountName" . }}
+      containers:
+        - name: {{ .Chart.Name }}-api
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          args: [ "--mode", "api" ]
+          volumeMounts:
+            - name: {{ include "statusbay.fullname" . }}-configmap-api
+              mountPath: /etc/statusbay
+          resources:
+            {{- toYaml .Values.api.resources | nindent 12 }}
+      volumes:
+        - name: {{ include "statusbay.fullname" . }}-configmap-api
+          configMap:
+            name: {{ include "statusbay.fullname" . }}-configmap-api
+            items:
+              - key: config
+                path: config.yaml
+{{- end -}}
