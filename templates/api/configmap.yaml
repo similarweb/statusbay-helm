@@ -14,12 +14,9 @@ data:
       port: {{ template "statusbay.database.port" . }}
       username: "{{ template "statusbay.database.username" . }}"
       password: "{{ template "statusbay.database.rawPassword" . }}"
-      schema: "statusbay"    
-
+      schema: "{{ template "statusbay.database.schema" . }}"
     metrics:
-      {{- toYaml .Values.api.application.metrics | nindent 6 }}
-    
+      {{- toYaml .Values.api.application.metrics | nindent 6 }}   
     alerts:
       {{- toYaml .Values.api.application.alerts | nindent 6 }}
-      
 {{- end -}}

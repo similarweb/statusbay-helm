@@ -6,9 +6,11 @@ metadata:
   labels:
 {{ include "statusbay.labels" . | indent 4 }}
 spec:
-  ports:
-    - port: 3306
   selector:
 {{ include "statusbay.matchLabels" . | indent 4 }}
     component: database
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
 {{- end -}}

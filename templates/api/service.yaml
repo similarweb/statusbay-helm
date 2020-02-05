@@ -10,15 +10,12 @@ metadata:
 {{ toYaml .Values.service.annotations | indent 4 }}
 {{- end }}
 spec:
+  selector:
+{{ include "statusbay.matchLabels" . | indent 4 }}
+    component: {{ include "statusbay.fullname" . }}-api
   type: {{ .Values.service.api.type }}
   ports:
   - port: {{ .Values.service.api.externalPort }}
     targetPort: 8080
     name: "http"
-{{- if hasKey .Values.service "nodePort" }}
-    nodePort: {{ .Values.service.nodePort }}
-{{- end }}
-  selector:
-{{ include "statusbay.matchLabels" . | indent 4 }}
-    component: {{ include "statusbay.fullname" . }}-api
 {{- end -}}

@@ -70,7 +70,7 @@ Create the name of the service account to use
   {{- if eq .Values.database.type "internal" -}}
     {{- template "statusbay.database" . }}
   {{- else -}}
-    {{- .Values.database.external.host -}}
+    {{- .Values.database.host -}}
   {{- end -}}
 {{- end -}}
 
@@ -78,22 +78,18 @@ Create the name of the service account to use
   {{- if eq .Values.database.type "internal" -}}
     {{- printf "%s" "3306" -}}
   {{- else -}}
-    {{- .Values.database.external.port -}}
+    {{- .Values.database.port -}}
   {{- end -}}
 {{- end -}}
 
 {{- define "statusbay.database.username" -}}
-  {{- if eq .Values.database.type "internal" -}}
-    {{- printf "%s" "root" -}}
-  {{- else -}}
-    {{- .Values.database.external.username -}}
-  {{- end -}}
+{{- .Values.database.username -}}
 {{- end -}}
 
 {{- define "statusbay.database.rawPassword" -}}
-  {{- if eq .Values.database.type "internal" -}}
-    {{- printf "%s" "1234" -}}
-  {{- else -}}
-    {{- .Values.database.external.password -}}
-  {{- end -}}
+{{- .Values.database.password -}}
+{{- end -}}
+
+{{- define "statusbay.database.schema" -}}
+{{- .Values.database.schema -}}
 {{- end -}}

@@ -14,11 +14,9 @@ data:
       port: {{ template "statusbay.database.port" . }}
       username: "{{ template "statusbay.database.username" . }}"
       password: "{{ template "statusbay.database.rawPassword" . }}"
-      schema: "statusbay"    
+      schema: "{{ template "statusbay.database.schema" . }}"
     slack:
-      token: xoxb-3292636427-648819785415-Jp4wnWd2p56tBK2E32CUYwbD
-      default_channels:
-        - '#elad_test'
+      {{- toYaml .Values.watcher.kubernetes.application.slack | nindent 6 }}
     ui:
       {{- toYaml .Values.watcher.kubernetes.application.ui | nindent 6 }}
     applies:

@@ -7,13 +7,13 @@ metadata:
 {{ include "statusbay.labels" . | indent 4 }}
     component: {{ include "statusbay.fullname" . }}-watcher-kubernetes
   annotations:
-{{ toYaml .Values.watcher.kubernetes.deploymentAnnotations | indent 4}}
+{{ toYaml .Values.watcher.kubernetes.annotations | indent 4}}
 spec:
-  replicas: 1
   selector:
     matchLabels:
 {{ include "statusbay.matchLabels" . | indent 6 }}
       component: {{ include "statusbay.fullname" . }}-watcher-kubernetes
+  replicas: 1
   template:
     metadata:
       labels:
@@ -25,10 +25,7 @@ spec:
         - name: {{ .Chart.Name }}-watcher-kubernetes
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          args: [
-            "--mode", 
-            "kubernetes"
-          ]
+          args: [ "--mode", "kubernetes" ]
           volumeMounts:
             - name: {{ include "statusbay.fullname" . }}-configmap-watcher-kubernetes
               mountPath: /etc/statusbay

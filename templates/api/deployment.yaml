@@ -7,13 +7,13 @@ metadata:
 {{ include "statusbay.labels" . | indent 4 }}
     component: {{ include "statusbay.fullname" . }}-api
   annotations:
-{{ toYaml .Values.api.deploymentAnnotations | indent 4}}
+{{ toYaml .Values.api.annotations | indent 4}}
 spec:
-  replicas: {{ .Values.api.replicas }}
   selector:
     matchLabels:
 {{ include "statusbay.matchLabels" . | indent 6 }}
       component: {{ include "statusbay.fullname" . }}-api
+  replicas: {{ .Values.api.replicas }}
   template:
     metadata:
       labels:
@@ -25,10 +25,7 @@ spec:
         - name: {{ .Chart.Name }}-api
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          args: [
-            "--mode", 
-            "api"
-          ]
+          args: [ "--mode", "api" ]
           volumeMounts:
             - name: {{ include "statusbay.fullname" . }}-configmap-api
               mountPath: /etc/statusbay

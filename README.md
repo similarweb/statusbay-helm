@@ -14,16 +14,19 @@ Parameter | Description | Default
 `image.tag` | container image tag | `v1.1`
 `image.pullPolicy` | container image pull policy | `IfNotPresent`
 | **Database** |
-`database.type` | If external database is used, set it to `external` | `internal`
+`database.type` | `internal` or `external`, internal would start a statefullset with MySQL | `internal`
+`database.host` | The hostname of database, redundant if you're using internal database | `192.168.0.1`
+`database.port` | The port of database, redundant if you're using internal database | `3306`
+`database.username` | The username of database | `statusbay`
+`database.password` | The password of database | `changeme`
+`database.schema` | The schema name of database | `statusbay`
+`database.internal.image.repository` | container image repository | `mysql`
+`database.internal.image.tag` | container image tag | `5.7`
+`database.internal.image.pullPolicy` | container image pull policy | `IfNotPresent`
 `database.internal.resources` | The [resources] to allocate for container | undefined
 `database.internal.persistence.persistentVolumeClaim.accessMode` | The access mode of the volume | `ReadWriteOnce`
 `database.internal.persistence.persistentVolumeClaim.storageClass` | Specify the `storageClass` used to provision the volume. Or the default StorageClass will be used(the default). Set it to `-` to disable dynamic provisioning | `-`
 `database.internal.persistence.persistentVolumeClaim.size` | The size of the volume | `5Gi`
-`database.external.host` | The hostname of external database | `192.168.0.1`
-`database.external.port` | The port of external database | `3306`
-`database.external.username` | The username of external database | `root`
-`database.external.password` | The password of external database | `changeme`
-`database.external.schema` | The schema name of external database | `statusbay`
 | **ingress** |
 `ingress.api.annotations` | The annotations used in ingress | `{}`
 `ingress.api.host` | The host of Statusbay ingress api | `api.statusbay.domain`
@@ -39,7 +42,7 @@ Parameter | Description | Default
 | **api** |
 `api.create` | If true, api server will be deploy | `true`
 `api.replicas` | The replica count | `1`
-`api.deploymentAnnotations` | The annotations used in api deployment | `{}`
+`api.annotations` | The annotations used in api deployment | `{}`
 `api.application.log_level` | The application log level | `info`
 `api.application.metrics.datadog.api_key` | The datadog provider api key | 
 `api.application.metrics.datadog.app_key` | The datadog provider app key | 
@@ -54,7 +57,7 @@ Parameter | Description | Default
 `api.resources` | The [resources] to allocate for container | undefined
 | **watcher** |
 `watcher.kubernetes.create` | If true, Kubernetes watcher will be deploy | `true`
-`watcher.kubernetes.deploymentAnnotations` | The annotations used in api deployment | `{}`
+`watcher.kubernetes.annotations` | The annotations used in api deployment | `{}`
 `watcher.kubernetes.application.log_level` | The application log level | `info`
 `watcher.kubernetes.application.ui.base_url` | The Statusbay UI endpoint | `todo`
 `watcher.kubernetes.application.applies.save_interval` | The interval time to save applies to DB | `2s`
