@@ -22,8 +22,9 @@ helm install my-release .
 ## Configuration
 
 The following table lists the configurable parameters of the Statusbay chart.      
+
 Parameter | Description | Default
---- | --- | ---
+--------- | ----------- | -------
 `image.repository` | container image repository | `eladkaplan1/statusbay`
 `image.tag` | container image tag | `v1.1`
 `image.pullPolicy` | container image pull policy | `IfNotPresent`
@@ -41,19 +42,19 @@ Parameter | Description | Default
 `database.internal.persistence.persistentVolumeClaim.accessMode` | The access mode of the volume | `ReadWriteOnce`
 `database.internal.persistence.persistentVolumeClaim.storageClass` | Specify the `storageClass` used to provision the volume. Or the default StorageClass will be used(the default). Set it to `-` to disable dynamic provisioning | `-`
 `database.internal.persistence.persistentVolumeClaim.size` | The size of the volume | `5Gi`
-| **ingress** |
+| **Ingress** |
 `ingress.api.annotations` | The annotations used in ingress | `{}`
 `ingress.api.host` | The host of Statusbay ingress api | `api.statusbay.domain`
-| **service** |
+| **Service** |
 `service.api.type` | The type of api service to create  | `NodePort`
 `service.api.annotations` | The annotations used in api service | `{}`
 `service.api.externalPort` | The external port for api server | `80`
-| **rbac** |
+| **RBAC** |
 `rbac.create` | If true, create & use RBAC resources | `true`
-| **serviceAccount** |
+| **Service Account** |
 `serviceAccount.create` | Specifies whether a ServiceAccount should be created | `true`
 `serviceAccount.name` | The name of the ServiceAccount to use  | ``
-| **api** |
+| **API** |
 `api.create` | If true, api server will be deploy | `true`
 `api.replicas` | The replica count | `1`
 `api.annotations` | The annotations used in api deployment | `{}`
@@ -69,7 +70,7 @@ Parameter | Description | Default
 `api.application.alerts.pingdom.endpoint` | The Pingdom endpoint auth | undefined
 `api.application.alerts.pingdom.token` | The Pingdom token auth | undefined
 `api.resources` | The [resources] to allocate for container | undefined
-| **watcher** |
+| **Watcher** |
 `watcher.kubernetes.create` | If true, Kubernetes watcher will be deploy | `true`
 `watcher.kubernetes.annotations` | The annotations used in api deployment | `{}`
 `watcher.kubernetes.application.log_level` | The application log level | `info`
