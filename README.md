@@ -58,7 +58,8 @@ Parameter | Description | Default
 `api.create` | If true, api server will be deploy | `true`
 `api.replicas` | The replica count | `1`
 `api.annotations` | The annotations used in api deployment | `{}`
-`api.application.log_level` | The application log level | `info`
+`api.application.log.level` | The application log level | `info`
+`api.application.log.gelf_address` | The address for ship the log out for external system | undefined
 `api.application.metrics.datadog.api_key` | The datadog provider api key | 
 `api.application.metrics.datadog.app_key` | The datadog provider app key | 
 `api.application.metrics.datadog.cache_cleanup_interval` | The interval time for cleanup cache metrics | 
@@ -73,7 +74,9 @@ Parameter | Description | Default
 | **Watcher** |
 `watcher.kubernetes.create` | If true, Kubernetes watcher will be deploy | `true`
 `watcher.kubernetes.annotations` | The annotations used in api deployment | `{}`
-`watcher.kubernetes.application.log_level` | The application log level | `info`
+`watcher.kubernetes.application.log.level` | The application log level | `info`
+`watcher.kubernetes.application.log.gelf_address` | The address for ship the log out for external system | undefined
+`watcher.kubernetes.application.log.level` | The application log level | `info`
 `watcher.kubernetes.application.ui.base_url` | The Statusbay UI endpoint | `todo`
 `watcher.kubernetes.application.applies.save_interval` | The interval time to save applies to DB | `2s`
 `watcher.kubernetes.application.applies.max_apply_time` | The maximum wacher time to waite until apply finish | `10m`
