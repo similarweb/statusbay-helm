@@ -1,0 +1,62 @@
+image:
+  repository: similarweb/statusbay
+  tag: 1.5
+  pullPolicy: Always
+
+database:
+  type: internal
+
+  host: 127.0.0.1 # Redundent if using internal
+  port: 3306 # Redundent if using internal
+  username: statusbay
+  password: changeme
+  schema: statusbay
+
+  internal:
+    image:
+      repository: mysql
+      tag: 5.7
+      pullPolicy: Always
+    resources:
+     requests:
+       memory: 256Mi
+       cpu: 100m
+    persistence:
+      persistentVolumeClaim:      
+        accessMode: ReadWriteOnce
+        storageClass: "-" 
+        size: 1Gi
+
+rbac:
+  create: true
+
+serviceAccount:
+  create: true
+  name: 
+
+api:
+  create: false
+
+watcher:
+  kubernetes:
+    create: true
+    annotations: {}
+    application:
+      log:
+        level: INFO
+        # gelf_address: 127.0.0.1
+      ui:
+        base_url: todo
+      applies:
+        save_interval: 2s
+        max_apply_time: 10m
+        check_finish_delay: 5s
+        collect_data_after_apply_finish: 10s
+      # slack:
+      #   token: example-slack-token
+      #   default_channels:
+      #     - "#example-channel"
+    resources:
+      requests:
+        cpu: 100m
+        memory: 128Mi
