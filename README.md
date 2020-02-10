@@ -73,6 +73,7 @@ Parameter | Description | Default
 `api.resources` | The [resources] to allocate for container | undefined
 | **Watcher** |
 `watcher.kubernetes.create` | If true, Kubernetes watcher will be deploy | `true`
+`watcher.kubernetes.cluster_name` | The cluster name | `default`
 `watcher.kubernetes.annotations` | The annotations used in api deployment | `{}`
 `watcher.kubernetes.application.log.level` | The application log level | `info`
 `watcher.kubernetes.application.log.gelf_address` | The address for ship the log out for external system | undefined
