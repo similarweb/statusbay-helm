@@ -8,6 +8,7 @@ metadata:
 data: 
   config: |-
     ---
+    cluster_name: {{- toYaml .Values.watcher.kubernetes.application.cluster_name }}
     log:
       {{- toYaml  .Values.watcher.kubernetes.application.log | nindent 6 }}
     mysql:
