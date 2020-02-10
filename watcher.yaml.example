@@ -4,28 +4,14 @@ image:
   pullPolicy: Always
 
 database:
-  type: internal
+  # Make sure all your K8S clusters have access to the main Database.
+  type: external
 
   host: 127.0.0.1 # Redundent if using internal
   port: 3306 # Redundent if using internal
   username: statusbay
   password: changeme
   schema: statusbay
-
-  internal:
-    image:
-      repository: mysql
-      tag: 5.7
-      pullPolicy: Always
-    resources:
-     requests:
-       memory: 256Mi
-       cpu: 100m
-    persistence:
-      persistentVolumeClaim:      
-        accessMode: ReadWriteOnce
-        storageClass: "-" 
-        size: 1Gi
 
 rbac:
   create: true
