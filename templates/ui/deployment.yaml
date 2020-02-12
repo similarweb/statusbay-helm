@@ -28,10 +28,5 @@ spec:
           resources:
             {{- toYaml .Values.ui.resources | nindent 12 }}
           env:
-            - name: API_URL
-              value: "http://{{ template "statusbay.fullname" . }}-api/api/v1/kubernetes"
-            - name: GELF_ADDRESS
-              value: "{{ toYaml  .Values.ui.application.log.gelf_address | nindent 12 }}"
-            - name: LOG_LEVEL
-              value: "{{ toYaml  .Values.ui.application.log.level | nindent 12 }}"
+            {{- include "statusbay.environmentVars" .Values.ui | nindent 12 -}}
 {{- end -}}
