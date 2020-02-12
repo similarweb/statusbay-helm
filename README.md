@@ -45,6 +45,9 @@ Parameter | Description | Default
 | **Ingress** |
 `ingress.api.annotations` | The annotations used in ingress | `{}`
 `ingress.api.host` | The host of Statusbay ingress api | `api.statusbay.domain`
+`ingress.ui.annotations` | The annotations used in ingress for the UI | `{}`
+`ingress.ui.host` | The host of StatusBay ingress UI | `statusbay.domain`
+
 | **Service** |
 `service.api.type` | The type of api service to create  | `NodePort`
 `service.api.annotations` | The annotations used in api service | `{}`
@@ -54,6 +57,16 @@ Parameter | Description | Default
 | **Service Account** |
 `serviceAccount.create` | Specifies whether a ServiceAccount should be created | `true`
 `serviceAccount.name` | The name of the ServiceAccount to use  | ``
+| **UI** |
+`ui.create` | If true, UI server will be deploy | `true`
+`ui.replicas` | The replica count of the UI webserver | `2`
+`ui.annotations` | The annotations to be used in the UI deployment | `{}`
+`ui.image.repository` | UI container image repository | `similarweb/statusbay`
+`ui.image.tag` | UI container image tag | `dev`
+`ui.image.pullPolicy` | container image pull policy | `IfNotPresent`
+`ui.application.log.level` | The UI application log level | `info`
+`ui.application.log.gelf_address` | The address to ship logs to an external system | undefined
+`ui.resources` | The [resources] to allocate for the UI containers | undefined
 | **API** |
 `api.create` | If true, api server will be deploy | `true`
 `api.replicas` | The replica count | `1`

@@ -1,6 +1,6 @@
 image:
   repository: similarweb/statusbay
-  tag: 1.5
+  tag: dev
   pullPolicy: Always
 
 database:
@@ -31,12 +31,19 @@ ingress:
   api:
     annotations: {}
     host: api.statusbay.domain
+  ui:
+    annotations: {}
+    host: statusbay.domain
 
 service:
   api:
     type: ClusterIP
     annotations: {}
     externalPort: 80
+  ui:
+    type: ClusterIP
+    annotations: {}
+    externalPort: 80    
 
 rbac:
   create: true
@@ -44,6 +51,26 @@ rbac:
 serviceAccount:
   create: true
   name: 
+
+ui:
+  create: true
+  replicas: 2
+  annotations: {}
+  
+  image:
+    repository: similarweb/statusbay-ui
+    tag: dev
+    pullPolicy: Always
+  
+  application:
+    log:
+      level: INFO
+      # gelf_address: 127.0.0.1
+  
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
 
 api:
   create: true
