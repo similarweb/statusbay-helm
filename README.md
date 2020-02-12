@@ -27,7 +27,7 @@ Parameter | Description | Default
 --------- | ----------- | -------
 `image.repository` | container image repository | `eladkaplan1/statusbay`
 `image.tag` | container image tag | `v1.1`
-`image.pullPolicy` | container image pull policy | `IfNotPresent`
+`image.pullPolicy` | container image pull policy | `Always`
 | **Database** |
 `database.type` | `internal` or `external`, internal would start a statefullset with MySQL | `internal`
 `database.host` | The hostname of database, redundant if you're using internal database | `192.168.0.1`
@@ -49,9 +49,12 @@ Parameter | Description | Default
 `ingress.ui.host` | The host of StatusBay ingress UI | `statusbay.domain`
 
 | **Service** |
-`service.api.type` | The type of api service to create  | `NodePort`
+`service.api.type` | The type of api service to create  | `ClusterIP`
 `service.api.annotations` | The annotations used in api service | `{}`
 `service.api.externalPort` | The external port for api server | `80`
+`service.ui.type` | The type of UI service to create  | `ClusterIP`
+`service.ui.annotations` | The annotations used in UI service | `{}`
+`service.ui.externalPort` | The external port for UI server | `80`
 | **RBAC** |
 `rbac.create` | If true, create & use RBAC resources | `true`
 | **Service Account** |
@@ -61,15 +64,15 @@ Parameter | Description | Default
 `ui.create` | If true, UI server will be deploy | `true`
 `ui.replicas` | The replica count of the UI webserver | `2`
 `ui.annotations` | The annotations to be used in the UI deployment | `{}`
-`ui.image.repository` | UI container image repository | `similarweb/statusbay`
+`ui.image.repository` | UI container image repository | `similarweb/statusbay-ui`
 `ui.image.tag` | UI container image tag | `dev`
-`ui.image.pullPolicy` | container image pull policy | `IfNotPresent`
+`ui.image.pullPolicy` | container image pull policy | `Always`
 `ui.application.log.level` | The UI application log level | `info`
 `ui.application.log.gelf_address` | The address to ship logs to an external system | undefined
 `ui.resources` | The [resources] to allocate for the UI containers | undefined
 | **API** |
 `api.create` | If true, api server will be deploy | `true`
-`api.replicas` | The replica count | `1`
+`api.replicas` | The replica count | `2`
 `api.annotations` | The annotations used in api deployment | `{}`
 `api.application.log.level` | The application log level | `info`
 `api.application.log.gelf_address` | The address for ship the log out for external system | undefined
