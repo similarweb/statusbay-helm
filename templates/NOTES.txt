@@ -1,0 +1,80 @@
+https://statusbay.io
+                       %                     
+                       %                     
+       ##       %%     %    *%        #      
+         %%      %%    %   ,%      %%        
+            #/                   %#          
+                      #%                     
+         ###        ######         (###      
+                 *%%%%%%#%%%%                
+  %%#%%%#%(        %#    /%/        #%%%#%%%.
+                   %%    /%/                 
+          #       #%#%#%#%#%                 
+      %,          #%%%%%#%%%         .%%     
+             %*   %%#%%#        #,           
+          #%                      %%         
+        ##                *#        ,#.      
+                     %%%#%%%                 
+                 %%%#%%%#%%%                 
+                 %%%%%                       
+                                             
+                         %%%%                
+                   ##%%%#%%%#                
+                #%%%%%%%#%%%%                
+                #########                    
+               *#%%%%%                       
+                                                             
+                                                                 
+Please wait while the StatusBay is deployed on your cluster.
+For more details, please visit https://github.com/similarweb/statusbay.
+
+To verify that StatusBay has started, run:
+
+    $ kubectl get svc,deployments,pods -l "release=statusbay, app=statusbay"
+
+Get the URL for the StatusBay UI:
+
+    {{- if (eq "statusbay.domain" .Values.ingress.ui.host) }}
+
+    $ kubectl port-forward svc/statusbay-ui 3000:80
+
+    Then you should be able to visit StatusBay at http://127.0.0.1:3000.
+
+    NOTE: To set your own domain you can change the value: `Values.ingress.ui.host`
+
+{{- else }}
+
+    Then you should be able to visit StatusBay at {{ .Values.ingress.ui.host }}.
+
+{{- end }}
+
+
+Container Versions:
+
+    Backend: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+    Frontend: {{ .Values.ui.image.repository }}:{{ .Values.ui.image.tag }}
+
+
+{{- if (.Values.ui.create) }}
+{{- if (gt .Values.ui.replicas 1.0) }}
+
+###############################################################################
+######   WARNING: The UI component deployed with one container.           #####
+######            In production consider increasing the replica number.   #####
+###############################################################################
+
+{{- end }}
+{{- end }}
+
+
+{{- if (.Values.api.create) }}
+{{- if (gt .Values.api.replicas 1.0) }}
+
+###############################################################################
+######   WARNING: The API component deployed with one container.          #####
+######            In production consider increasing the replica number.   #####
+###############################################################################
+
+{{- end }}
+{{- end }}
+
