@@ -47,7 +47,6 @@ Parameter | Description | Default
 `ingress.api.host` | The host of Statusbay ingress api | `api.statusbay.domain`
 `ingress.ui.annotations` | The annotations used in ingress for the UI | `{}`
 `ingress.ui.host` | The host of StatusBay ingress UI | `statusbay.domain`
-
 | **Service** |
 `service.api.type` | The type of api service to create  | `ClusterIP`
 `service.api.annotations` | The annotations used in api service | `{}`
