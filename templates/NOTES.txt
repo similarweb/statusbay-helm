@@ -1,13 +1,38 @@
-
-
+https://statusbay.io
+                       %                     
+                       %                     
+       ##       %%     %    *%        #      
+         %%      %%    %   ,%      %%        
+            #/                   %#          
+                      #%                     
+         ###        ######         (###      
+                 *%%%%%%#%%%%                
+  %%#%%%#%(        %#    /%/        #%%%#%%%.
+                   %%    /%/                 
+          #       #%#%#%#%#%                 
+      %,          #%%%%%#%%%         .%%     
+             %*   %%#%%#        #,           
+          #%                      %%         
+        ##                *#        ,#.      
+                     %%%#%%%                 
+                 %%%#%%%#%%%                 
+                 %%%%%                       
+                                             
+                         %%%%                
+                   ##%%%#%%%#                
+                #%%%%%%%#%%%%                
+                #########                    
+               *#%%%%%                       
+                                                             
+                                                                 
 Please wait while the StatusBay is deployed on your cluster.
 For more details, please visit https://github.com/similarweb/statusbay.
 
 To verify that StatusBay has started, run:
 
-    kubectl get svc,deployments,pods -l "release=statusbay, app=statusbay"
+    $ kubectl get svc,deployments,pods -l "release=statusbay, app=statusbay"
 
-Get the URL for StatusBay:
+Get the URL for the StatusBay UI:
 
     {{- if (eq "statusbay.domain" .Values.ingress.ui.host) }}
 
@@ -24,7 +49,7 @@ Get the URL for StatusBay:
 {{- end }}
 
 
-Versions:
+Container Versions:
 
     Backend: {{ .Values.image.repository }}:{{ .Values.image.tag }}
     Frontend: {{ .Values.ui.image.repository }}:{{ .Values.ui.image.tag }}
@@ -33,11 +58,10 @@ Versions:
 {{- if (.Values.ui.create) }}
 {{- if (gt .Values.ui.replicas 1.0) }}
 
-#######################################################################################
-######   WARNING: The UI component deploy with on container. You will not be able #####
-######            to browse to StatusBay UI when the container is down.           #####
-######            for production load we recommenced more the one                 #####
-#######################################################################################
+###############################################################################
+######   WARNING: The UI component deployed with one container.           #####
+######            In production consider increasing the replica number.   #####
+###############################################################################
 
 {{- end }}
 {{- end }}
@@ -46,11 +70,10 @@ Versions:
 {{- if (.Values.api.create) }}
 {{- if (gt .Values.api.replicas 1.0) }}
 
-########################################################################################
-######   WARNING: The API component deploy with on container. You will not be able #####
-######            to browse to StatusBay API when the container is down.           #####
-######            for production load we recommenced more the one                  #####
-########################################################################################
+###############################################################################
+######   WARNING: The API component deployed with one container.          #####
+######            In production consider increasing the replica number.   #####
+###############################################################################
 
 {{- end }}
 {{- end }}
