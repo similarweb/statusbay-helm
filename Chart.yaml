@@ -8,7 +8,7 @@ keywords:
     - deployment
     - visibility
 home: statusbay.io
-icon: https://todo.com
+icon: https://github.com/similarweb/statusbay/raw/master/docs/images/logo.png
 sources:
     - https://github.com/similarweb/statusbay
 maintainers:
