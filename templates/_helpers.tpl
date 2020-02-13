@@ -93,3 +93,16 @@ Create the name of the service account to use
 {{- define "statusbay.database.schema" -}}
 {{- .Values.database.schema -}}
 {{- end -}}
+
+
+{{/*
+Inject environment vars in the format key:value, if populated
+*/}}
+{{- define "statusbay.environmentVars" -}}
+{{- if .environmentVars -}}
+{{- range $key, $value := .environmentVars }}
+- name: {{ $key }}
+  value: {{ $value | quote }}
+{{- end -}}
+{{- end -}}
+{{- end -}}

@@ -1,0 +1,21 @@
+{{- if .Values.ui.create  -}}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ template "statusbay.fullname" . }}-ui
+  labels:
+{{ include "statusbay.labels" . | indent 4 }}
+{{- if .Values.service.annotations }}
+  annotations:
+{{ toYaml .Values.service.annotations | indent 4 }}
+{{- end }}
+spec:
+  selector:
+{{ include "statusbay.matchLabels" . | indent 4 }}
+    component: {{ include "statusbay.fullname" . }}-ui
+  type: {{ .Values.service.ui.type }}
+  ports:
+  - port: {{ .Values.service.ui.externalPort }}
+    targetPort: 80
+    name: "http"
+{{- end -}}
