@@ -27,7 +27,7 @@ Parameter | Description | Default
 --------- | ----------- | -------
 `image.repository` | container image repository | `eladkaplan1/statusbay`
 `image.tag` | container image tag | `v1.1`
-`image.pullPolicy` | container image pull policy | `Always`
+`image.pullPolicy` | container image pull policy | `IfNotPresent`
 | **Database** |
 `database.type` | `internal` or `external`, internal would start a statefullset with MySQL | `internal`
 `database.host` | The hostname of database, redundant if you're using internal database | `192.168.0.1`
@@ -65,7 +65,7 @@ Parameter | Description | Default
 `ui.annotations` | The annotations to be used in the UI deployment | `{}`
 `ui.image.repository` | UI container image repository | `similarweb/statusbay-ui`
 `ui.image.tag` | UI container image tag | `dev`
-`ui.image.pullPolicy` | container image pull policy | `Always`
+`ui.image.pullPolicy` | container image pull policy | `IfNotPresent`
 `ui.application.log.level` | The UI application log level | `info`
 `ui.application.log.gelf_address` | The address to ship logs to an external system | undefined
 `ui.resources` | The [resources] to allocate for the UI containers | undefined
