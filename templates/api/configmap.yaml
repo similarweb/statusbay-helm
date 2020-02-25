@@ -20,4 +20,6 @@ data:
       {{- toYaml .Values.api.application.metrics | nindent 6 }}
     alerts:
       {{- toYaml .Values.api.application.alerts | nindent 6 }}
+    events:
+      {{- toYaml .Values.api.application.events | nindent 6 }}
 {{- end -}}
