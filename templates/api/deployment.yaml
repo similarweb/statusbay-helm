@@ -38,4 +38,6 @@ spec:
             items:
               - key: config
                 path: config.yaml
+              - key: events
+                path: events.yaml
 {{- end -}}
