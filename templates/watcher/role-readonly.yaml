@@ -1,4 +1,3 @@
-
 {{- if and (.Values.rbac.create) (.Values.watcher.kubernetes.create)  }}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
