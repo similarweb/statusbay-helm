@@ -1,7 +1,7 @@
 image:
   repository: similarweb/statusbay
   tag: 0.1.0
-  pullPolicy: Always
+  pullPolicy: IfNotPresent
 
 database:
   type: internal
@@ -16,7 +16,7 @@ database:
     image:
       repository: mysql
       tag: 5.7
-      pullPolicy: Always
+      pullPolicy: IfNotPresent
     resources:
      requests:
        memory: 256Mi
@@ -60,7 +60,7 @@ ui:
   image:
     repository: similarweb/statusbay-ui
     tag: 0.1.0
-    pullPolicy: Always
+    pullPolicy: IfNotPresent
   
   # environmentVars is a list of  enviroment variables to set with the UI deployment. These could be
   # used to set API_URL ,GELF ADDRESS & LOG_LEVEL.
