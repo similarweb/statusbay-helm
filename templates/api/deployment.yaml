@@ -40,4 +40,3 @@ spec:
                 path: config.yaml
               - key: events
                 path: events.yaml
-{{- end -}}

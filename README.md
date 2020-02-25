@@ -92,7 +92,7 @@ Parameter | Description | Default
 `watcher.kubernetes.annotations` | The annotations used in api deployment | `{}`
 `watcher.kubernetes.application.log.level` | The application log level | `info`
 `watcher.kubernetes.application.log.gelf_address` | The address for ship the log out for external system | undefined
-`watcher.kubernetes.application.ui.base_url` | The Statusbay UI endpoint | `todo`
+`watcher.kubernetes.application.ui.base_url` | The Statusbay UI endpoint | `defaults to ingress.ui.host setting through the configmap`
 `watcher.kubernetes.application.applies.save_interval` | The interval time to save applies to DB | `2s`
 `watcher.kubernetes.application.applies.max_apply_time` | The maximum wacher time to waite until apply finish | `10m`
 `watcher.kubernetes.application.applies.check_finish_delay` | The time delay until the wacher check the apply status | `5s`
