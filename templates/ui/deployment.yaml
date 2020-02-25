@@ -1,4 +1,4 @@
-{{- if .Values.ui.create  -}}
+{{- if .Values.ui.create  }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
