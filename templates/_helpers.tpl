@@ -99,6 +99,8 @@ Create the name of the service account to use
 Inject environment vars in the format key:value, if populated
 */}}
 {{- define "statusbay.environmentVars" -}}
+- name: API_URL
+  value: {{ .Chart.Name }}-api
 {{- if .environmentVars -}}
 {{- range $key, $value := .environmentVars }}
 - name: {{ $key }}

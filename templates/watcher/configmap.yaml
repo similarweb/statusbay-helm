@@ -20,6 +20,7 @@ data:
     slack:
       {{- toYaml .Values.watcher.kubernetes.application.slack | nindent 6 }}
     ui:
+      base_url: {{ .Values.ingress.ui.host }}
       {{- toYaml .Values.watcher.kubernetes.application.ui | nindent 6 }}
     applies:
       {{- toYaml .Values.watcher.kubernetes.application.applies | nindent 6 }}
