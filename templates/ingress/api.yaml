@@ -1,4 +1,4 @@
-{{- if .Values.api.create -}}
+{{- if .Values.api.create }}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:

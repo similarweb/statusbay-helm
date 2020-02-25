@@ -1,4 +1,4 @@
-{{- if (eq .Values.database.type "internal") -}}
+{{- if (eq .Values.database.type "internal") }}
 {{- $database := .Values.database -}}
 apiVersion: apps/v1
 kind: StatefulSet
