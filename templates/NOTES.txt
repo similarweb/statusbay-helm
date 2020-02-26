@@ -30,15 +30,13 @@ For more details, please visit https://github.com/similarweb/statusbay.
 
 To verify that StatusBay has started, run:
 
-    $ kubectl get svc,deployments,pods -l "release=statusbay,app=statusbay-helm"
+    $ kubectl get svc,deployments,pods -l "release={{ .Release.Name }},app={{ include "statusbay.name" . }}"
 
 Get the URL for the StatusBay UI:
 
     {{- if (eq "statusbay.domain" .Values.ingress.ui.host) }}
 
     $ kubectl port-forward svc/{{ include "statusbay.fullname" . }}-ui 3000:80
-
-    Make sure to change my-release to your helm chart release name.
 
     Then you should be able to visit StatusBay at http://127.0.0.1:3000.
 
