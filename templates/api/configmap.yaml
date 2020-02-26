@@ -53,6 +53,16 @@ data:
         <ul>
             <li>TODO....</li>
         </ul>
+    - pattern: "Error: ErrImagePull"
+      descriptions:
+        - >-
+          Error occurred during image pulling.
+          <ul>
+            <li>Check the repository, image name and tag are valid</li>
+            <li>Verify that image exists in the registry</li>
+            <li>Verify the host is authorized to download that image</li>
+            <li>Check connectivity from the host to the registry</li>
+          </ul>
     replicaset:
     - pattern: "Replicaset event example"
       descriptions:
