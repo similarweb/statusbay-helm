@@ -29,6 +29,6 @@ spec:
             {{- toYaml .Values.ui.resources | nindent 12 }}
           env:
             - name: API_URL
-              value: "{{ template "statusbay.fullname" . }}-ui"
+              value: "{{ template "statusbay.fullname" . }}-api"
             {{- include "statusbay.environmentVars" .Values.ui | nindent 12 -}}         
 {{- end -}}
