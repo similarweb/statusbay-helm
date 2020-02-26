@@ -7,7 +7,10 @@ metadata:
 {{ include "statusbay.labels" . | indent 4 }}
     component: {{ include "statusbay.fullname" . }}-watcher-kubernetes
   annotations:
+{{- if .Values.watcher.kubernetes.annotations }}
 {{ toYaml .Values.watcher.kubernetes.annotations | indent 4}}
+{{- end }}
+{{ include "statusbay.annotations" . | indent 4 }}
 spec:
   selector:
     matchLabels:

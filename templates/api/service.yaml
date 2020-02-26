@@ -5,10 +5,11 @@ metadata:
   name: {{ template "statusbay.fullname" . }}-api
   labels:
 {{ include "statusbay.labels" . | indent 4 }}
-{{- if .Values.service.annotations }}
   annotations:
+{{- if .Values.service.annotations }}
 {{ toYaml .Values.service.annotations | indent 4 }}
 {{- end }}
+{{ include "statusbay.annotations" . | indent 4 }}
 spec:
   selector:
 {{ include "statusbay.matchLabels" . | indent 4 }}

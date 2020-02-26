@@ -5,6 +5,8 @@ metadata:
   name: {{ include "statusbay.fullname" . }}-configmap-api
   labels:
 {{ include "statusbay.labels" . | indent 4 }}
+  annotations:
+{{ include "statusbay.annotations" . | indent 4 }}
 data: 
   config: |-
     ---

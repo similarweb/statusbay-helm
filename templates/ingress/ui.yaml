@@ -5,10 +5,11 @@ metadata:
   name: {{ template "statusbay.fullname" . }}-ui
   labels:
 {{ include "statusbay.labels" . | indent 4 }}
-{{- if .Values.ingress.ui.annotations }}
   annotations:
+{{- if .Values.ingress.ui.annotations }}
 {{ toYaml .Values.ingress.ui.annotations | indent 4 }}
 {{- end }}
+{{ include "statusbay.annotations" . | indent 4 }}
 spec:
   rules:
     - host: {{ .Values.ingress.ui.host }}

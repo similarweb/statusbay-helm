@@ -42,6 +42,10 @@ chart: {{ .Chart.Name }}
 app: "{{ template "statusbay.name" . }}"
 {{- end -}}
 
+{{- define "statusbay.annotations" -}}
+statusbay.io/application-name: "statusbay-application"
+statusbay.io/progress-deadline-seconds: "300"
+{{- end -}}
 
 {{/* matchLabels */}}
 {{- define "statusbay.matchLabels" -}}
