@@ -36,7 +36,7 @@ Get the URL for the StatusBay UI:
 
     {{- if (eq "statusbay.domain" .Values.ingress.ui.host) }}
 
-    $ kubectl port-forward svc/my-release-statusbay-ui 3000:80
+    $ kubectl port-forward svc/my-release-statusbay-helm-ui 3000:80
 
     Make sure to change my-release to your helm chart release name.
 
