@@ -1,6 +1,6 @@
 image:
   repository: similarweb/statusbay
-  tag: dev
+  tag: 0.1.0
   pullPolicy: IfNotPresent
 
 database:
@@ -59,7 +59,7 @@ ui:
   
   image:
     repository: similarweb/statusbay-ui
-    tag: dev
+    tag: 0.1.0
     pullPolicy: IfNotPresent
   
   # environmentVars is a list of  enviroment variables to set with the UI deployment. These could be
