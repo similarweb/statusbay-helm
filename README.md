@@ -25,7 +25,7 @@ The following table lists the configurable parameters of the Statusbay chart.
 
 Parameter | Description | Default
 --------- | ----------- | -------
-`image.repository` | container image repository | `eladkaplan1/statusbay`
+`image.repository` | container image repository | `similarweb/statusbay`
 `image.tag` | container image tag | `v1.1`
 `image.pullPolicy` | container image pull policy | `IfNotPresent`
 | **Database** |
