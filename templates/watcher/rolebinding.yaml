@@ -5,6 +5,8 @@ metadata:
   name: {{ template "statusbay.fullname" . }}
   labels:
 {{ include "statusbay.labels" . | indent 4 }}
+  annotations:
+{{ include "statusbay.annotations" . | indent 4 }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole

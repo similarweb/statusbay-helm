@@ -5,6 +5,8 @@ metadata:
   name: "{{ template "statusbay.database" . }}"
   labels:
 {{ include "statusbay.labels" . | indent 4 }}
+  annotations:
+{{ include "statusbay.annotations" . | indent 4 }}
 spec:
   selector:
 {{ include "statusbay.matchLabels" . | indent 4 }}
