@@ -19,9 +19,10 @@ data:
       username: "{{ template "statusbay.database.username" . }}"
       password: "{{ template "statusbay.database.rawPassword" . }}"
       schema: "{{ template "statusbay.database.schema" . }}"
+    notifiers:
     {{- if .Values.watcher.kubernetes.application.slack }}
-    slack:
-      {{- toYaml .Values.watcher.kubernetes.application.slack | nindent 6 }}
+      slack:
+        {{- toYaml .Values.watcher.kubernetes.application.slack | nindent 8 }}
     {{- end }}
     ui:
       base_url: {{ .Values.ingress.ui.host }}
