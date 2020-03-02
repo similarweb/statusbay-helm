@@ -97,4 +97,12 @@ data:
         <ul>
             <li>TODO....</li>
         </ul>
+    pvc:
+    - pattern: "not found"
+      descriptions:
+      - >-
+        TBD
+        <ul>
+            <li>TODO....</li>
+        </ul>
 {{- end -}}
