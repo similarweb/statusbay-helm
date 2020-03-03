@@ -90,7 +90,7 @@ Parameter | Description | Default
 `api.application.log.gelf_address` | The address for ship the log out for external system | undefined
 `api.application.metrics.datadog.api_key` | The datadog provider api key | 
 `api.application.metrics.datadog.app_key` | The datadog provider app key | 
-`api.application.metrics.datadog.cache_cleanup_interval` | The interval time for cleanup cache metrics | 
+cache metrics | 
 `api.application.metrics.datadog.cache_expiration` | The metric response cache expiration | undefined
 `api.application.metrics.prometheus.address` | The prometheus address | undefined
 `api.application.alerts.statuscake.endpoint` | The Statuscake endpoint | undefined

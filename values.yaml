@@ -109,7 +109,6 @@ api:
       # datadog:
       #   api_key: example-api-key
       #   app_key: example-app-key
-      #   cache_cleanup_interval: 1m
       #   cache_expiration: 3m
       # prometheus:
       #   address: http://prometheus-url.domain:9090
