@@ -47,7 +47,7 @@ Parameter | Description | Default
 `redis.host` | The hostname of Redis, redundant if you're using internal Redis | `127.0.0.1`
 `redis.port` | The port of redis, redundant if you're using internal redis | `6379`
 `redis.password` | The password of Redis | ``
-`redis.db` | The DB of Redis | ``
+`redis.db` | The DB of Redis | `0`
 `redis.internal.image.repository` | container image repository | `redis`
 `redis.internal.image.tag` | container image tag | `5.0.7`
 `redis.internal.image.pullPolicy` | container image pull policy | `IfNotPresent`
