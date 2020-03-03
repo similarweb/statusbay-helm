@@ -27,6 +27,30 @@ database:
         storageClass: "-" 
         size: 1Gi
 
+
+redis:
+  type: internal
+
+  host: 127.0.0.1 # Redundent if using internal
+  port: 6379 # Redundent if using internal
+  password: 
+  db: 0
+
+  internal:
+    image:
+      repository: redis
+      tag: 5.0.7
+      pullPolicy: IfNotPresent
+    resources:
+     requests:
+       memory: 256Mi
+       cpu: 100m
+    persistence:
+      persistentVolumeClaim:      
+        accessMode: ReadWriteOnce
+        storageClass: "-" 
+        size: 1Gi
+
 ingress:
   api:
     annotations: {}

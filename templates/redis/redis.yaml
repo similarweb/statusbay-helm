@@ -1,0 +1,59 @@
+{{- if (eq .Values.redis.type "internal") }}
+{{- $redis := .Values.redis -}}
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: "{{ template "statusbay.redis" . }}"
+  labels:
+{{ include "statusbay.labels" . | indent 4 }}
+    component: redis
+  annotations:
+{{ include "statusbay.annotations" . | indent 4 }}
+spec:
+  selector:
+    matchLabels:
+{{ include "statusbay.matchLabels" . | indent 6 }}
+      component: redis
+  serviceName: "{{ template "statusbay.redis" . }}"
+  replicas: 1
+  template:
+    metadata:
+       labels:
+{{ include "statusbay.labels" . | indent 8 }}
+        component: redis
+    spec:
+      containers:
+      - name: redis
+        image: {{ $redis.internal.image.repository }}:{{ $redis.internal.image.tag }}
+        imagePullPolicy: {{ $redis.internal.image.pullPolicy }}
+        ports:
+        - name: redis
+          containerPort: 6379
+        volumeMounts:
+        - name: data
+          mountPath: /var/lib/redis
+          subPath: redis
+        livenessProbe:
+          tcpSocket:
+            port: 6379
+          initialDelaySeconds: 300
+          periodSeconds: 10
+        readinessProbe:
+          tcpSocket:
+            port: 6379
+          initialDelaySeconds: 1
+          periodSeconds: 10
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: [{{ $redis.internal.persistence.persistentVolumeClaim.accessMode | quote }}]
+      {{- if not (eq "-" $redis.internal.persistence.persistentVolumeClaim.storageClass) }}
+      storageClassName: "{{ $redis.internal.persistence.persistentVolumeClaim.storageClass }}"
+      {{- end }}
+      resources:
+        requests:
+          cpu: {{ $redis.internal.resources.requests.cpu | quote }}
+          memory: {{ $redis.internal.resources.requests.memory | quote }}
+          storage: {{ $redis.internal.persistence.persistentVolumeClaim.size | quote }}
+{{- end }}
