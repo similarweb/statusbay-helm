@@ -18,6 +18,11 @@ data:
       username: "{{ template "statusbay.database.username" . }}"
       password: "{{ template "statusbay.database.rawPassword" . }}"
       schema: "{{ template "statusbay.database.schema" . }}"
+    redis:
+      addr: "{{ template "statusbay.redis.host" . }}"
+      port: {{ template "statusbay.redis.port" . }}
+      password: "{{ template "statusbay.redis.rawPassword" . }}"
+      db: {{ template "statusbay.redis.db" . }}
     metrics:
       {{- toYaml .Values.api.application.metrics | nindent 6 }}
     alerts:

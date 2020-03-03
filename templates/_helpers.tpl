@@ -98,6 +98,34 @@ Create the name of the service account to use
 {{- .Values.database.schema -}}
 {{- end -}}
 
+{{/* Redis variables */}}
+{{- define "statusbay.redis" -}}
+  {{- printf "%s-redis" (include "statusbay.fullname" .) -}}
+{{- end -}}
+
+{{- define "statusbay.redis.host" -}}
+  {{- if eq .Values.redis.type "internal" -}}
+    {{- template "statusbay.redis" . }}
+  {{- else -}}
+    {{- .Values.redis.host -}}
+  {{- end -}}
+{{- end -}}
+
+{{- define "statusbay.redis.port" -}}
+  {{- if eq .Values.redis.type "internal" -}}
+    {{- printf "%s" "6379" -}}
+  {{- else -}}
+    {{- .Values.redis.port -}}
+  {{- end -}}
+{{- end -}}
+
+{{- define "statusbay.redis.rawPassword" -}}
+{{- .Values.redis.password -}}
+{{- end -}}
+
+{{- define "statusbay.redis.db" -}}
+{{- .Values.redis.db -}}
+{{- end -}}
 
 {{/*
 Inject environment vars in the format key:value, if populated

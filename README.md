@@ -30,7 +30,7 @@ Parameter | Description | Default
 `image.pullPolicy` | container image pull policy | `IfNotPresent`
 | **Database** |
 `database.type` | `internal` or `external`, internal would start a statefullset with MySQL | `internal`
-`database.host` | The hostname of database, redundant if you're using internal database | `192.168.0.1`
+`database.host` | The hostname of database, redundant if you're using internal database | `127.0.0.1`
 `database.port` | The port of database, redundant if you're using internal database | `3306`
 `database.username` | The username of database | `statusbay`
 `database.password` | The password of database | `changeme`
@@ -41,7 +41,20 @@ Parameter | Description | Default
 `database.internal.resources` | The [resources] to allocate for container | undefined
 `database.internal.persistence.persistentVolumeClaim.accessMode` | The access mode of the volume | `ReadWriteOnce`
 `database.internal.persistence.persistentVolumeClaim.storageClass` | Specify the `storageClass` used to provision the volume. Or the default StorageClass will be used(the default). Set it to `-` to disable dynamic provisioning | `-`
-`database.internal.persistence.persistentVolumeClaim.size` | The size of the volume | `5Gi`
+`database.internal.persistence.persistentVolumeClaim.size` | The size of the volume | `1Gi`
+| **redis** |
+`redis.type` | `internal` or `external`, internal would start a statefullset with Redis | `internal`
+`redis.host` | The hostname of Redis, redundant if you're using internal Redis | `127.0.0.1`
+`redis.port` | The port of redis, redundant if you're using internal redis | `6379`
+`redis.password` | The password of Redis | ``
+`redis.db` | The DB of Redis | ``
+`redis.internal.image.repository` | container image repository | `redis`
+`redis.internal.image.tag` | container image tag | `5.0.7`
+`redis.internal.image.pullPolicy` | container image pull policy | `IfNotPresent`
+`redis.internal.resources` | The [resources] to allocate for container | undefined
+`redis.internal.persistence.persistentVolumeClaim.accessMode` | The access mode of the volume | `ReadWriteOnce`
+`redis.internal.persistence.persistentVolumeClaim.storageClass` | Specify the `storageClass` used to provision the volume. Or the default StorageClass will be used(the default). Set it to `-` to disable dynamic provisioning | `-`
+`redis.internal.persistence.persistentVolumeClaim.size` | The size of the volume | `1Gi`
 | **Ingress** |
 `ingress.api.annotations` | The annotations used in ingress | `{}`
 `ingress.api.host` | The host of Statusbay ingress api | `api.statusbay.domain`
