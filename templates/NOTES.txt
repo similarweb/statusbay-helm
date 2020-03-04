@@ -56,7 +56,7 @@ Container Versions:
 
 
 {{- if (.Values.ui.create) }}
-{{- if (gt .Values.ui.replicas 1.0) }}
+{{- if not (gt .Values.ui.replicas 1.0) }}
 
 ###############################################################################
 ######   WARNING: The UI component deployed with one container.           #####
@@ -68,7 +68,7 @@ Container Versions:
 
 
 {{- if (.Values.api.create) }}
-{{- if (gt .Values.api.replicas 1.0) }}
+{{- if not (gt .Values.api.replicas 1.0) }}
 
 ###############################################################################
 ######   WARNING: The API component deployed with one container.          #####
