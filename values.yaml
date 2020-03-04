@@ -78,7 +78,9 @@ serviceAccount:
 
 ui:
   create: true
-  replicas: 2
+  
+  # For now we have not supporting multiple UI instances.
+  replicas: 1
   annotations: {}
   
   image:
@@ -110,7 +112,7 @@ api:
       #   api_key: example-api-key
       #   app_key: example-app-key
       #   cache_cleanup_interval: 1m
-      #   cache_expiration: 3m
+      #   cache_expiration: 1m
       # prometheus:
       #   address: http://prometheus-url.domain:9090
     alerts:
