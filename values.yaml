@@ -1,6 +1,6 @@
 image:
   repository: similarweb/statusbay
-  tag: 0.1.2
+  tag: 0.1.6
   pullPolicy: IfNotPresent
 
 database:
@@ -26,7 +26,6 @@ database:
         accessMode: ReadWriteOnce
         storageClass: "-" 
         size: 1Gi
-
 
 redis:
   type: internal
@@ -85,7 +84,7 @@ ui:
   
   image:
     repository: similarweb/statusbay-ui
-    tag: 0.1.2
+    tag: 0.1.6
     pullPolicy: IfNotPresent
   
   # environmentVars is a list of  enviroment variables to set with the UI deployment. These could be
@@ -149,6 +148,3 @@ watcher:
       requests:
         cpu: 100m
         memory: 128Mi
-
-
-
