@@ -23,6 +23,8 @@ data:
       port: {{ template "statusbay.redis.port" . }}
       password: "{{ template "statusbay.redis.rawPassword" . }}"
       db: {{ template "statusbay.redis.db" . }}
+    telemetry:
+      {{- toYaml .Values.api.application.telemetry | nindent 6 }}
     metrics:
       {{- toYaml .Values.api.application.metrics | nindent 6 }}
     alerts:
