@@ -99,14 +99,7 @@ ui:
 api:
   create: true
   replicas: 2
-  annotations:
-    statusbay.io/metrics-datadog-num-goroutines: "sum:statusbay.runtime.num_goroutines{*}.as_count()"
-    statusbay.io/metrics-datadog-alloc-bytes: "sum:statusbay.runtime.alloc_bytes{*}.as_count()"
-    statusbay.io/metrics-datadog-malloc-count: "sum:statusbay.runtime.malloc_count{*}.as_count()"
-    statusbay.io/metrics-datadog-free-count: "sum:statusbay.runtime.free_count{*}.as_count()"
-    statusbay.io/metrics-datadog-heap-objects: "sum:statusbay.runtime.heap_objects{*}.as_count()"
-    statusbay.io/metrics-datadog-total-gc-pause-ns: "sum:statusbay.runtime.total_gc_pause_ns{*}.as_count()"
-    statusbay.io/metrics-datadog-total-gc-runs: "sum:statusbay.runtime.total_gc_runs{*}.as_count()"
+  annotations: {}
   application:    
     log:
       level: INFO
