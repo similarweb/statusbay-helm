@@ -77,9 +77,7 @@ serviceAccount:
 
 ui:
   create: true
-  
-  # For now we have not supporting multiple UI instances.
-  replicas: 1
+  replicas: 3
   annotations: {}
   
   image:
@@ -106,6 +104,27 @@ api:
     log:
       level: INFO
       # gelf_address: 127.0.0.1
+    telemetry:
+      # flush_interval: 10
+      # allowed_prefixes:
+      #   - 'abc'
+      #   - 'def'
+      # blocked_prefixes:
+      #   - 'abc'
+      #   - 'def'
+      # disable_hostname: true
+      # metrics_prefix: ''
+
+      # dogstatsd_addr: ''
+      # datadog_tags:
+      #   - 'tag1:value1'
+      #   - 'tag2:value2'
+
+      # allow_metrics_by_default: true
+
+      # prometheus_retention_time_sec: 3600
+      # statsd_address: ''
+      # statsite_address: ''
     metrics:
       # datadog:
       #   api_key: example-api-key
@@ -135,6 +154,27 @@ watcher:
       log:
         level: INFO
         # gelf_address: 127.0.0.1
+      telemetry:
+        # flush_interval: 10
+        # allowed_prefixes:
+        #   - 'abc'
+        #   - 'def'
+        # blocked_prefixes:
+        #   - 'abc'
+        #   - 'def'
+        # disable_hostname: true
+        # metrics_prefix: ''
+
+        # dogstatsd_addr: ''
+        # datadog_tags:
+        #   - 'tag1:value1'
+        #   - 'tag2:value2'
+
+        # allow_metrics_by_default: true
+
+        # prometheus_retention_time_sec: 3600
+        # statsd_address: ''
+        # statsite_address: ''
       applies:
         save_interval: 2s
         max_apply_time: 10m
