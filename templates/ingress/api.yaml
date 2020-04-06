@@ -19,4 +19,9 @@ spec:
             backend:
               serviceName: {{ include "statusbay.fullname" . }}-api
               servicePort: {{ .Values.service.api.externalPort }}
+{{- if .Values.ingress.api.use_tls }}
+  tls:
+    - hosts:
+      - {{ .Values.ingress.api.host }}
+{{- end }}
 {{- end -}}

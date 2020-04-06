@@ -1,7 +1,7 @@
 image:
   repository: similarweb/statusbay
-  tag: 1.5
-  pullPolicy: Always
+  tag: 0.1.6
+  pullPolicy: IfNotPresent
 
 database:
   # Make sure all your K8S clusters have access to the main Database.
@@ -18,9 +18,12 @@ rbac:
 
 serviceAccount:
   create: true
-  name: 
+  name:
 
 api:
+  create: false
+
+ui:
   create: false
 
 watcher:
