@@ -21,7 +21,7 @@ helm install my-release .
 
 ## Configuration
 
-The following table lists the configurable parameters of the Statusbay chart.      
+The following table lists the configurable parameters of the Statusbay chart.
 
 Parameter | Description | Default
 --------- | ----------- | -------
@@ -35,6 +35,8 @@ Parameter | Description | Default
 `database.username` | The username of database | `statusbay`
 `database.password` | The password of database | `changeme`
 `database.schema` | The schema name of database | `statusbay`
+`database.internal.sercice.type` | The service type to be used | `ClusterIP`
+`database.internal.sercice.annotations` | The annotations used in the service | `{}`
 `database.internal.image.repository` | container image repository | `mysql`
 `database.internal.image.tag` | container image tag | `5.7`
 `database.internal.image.pullPolicy` | container image pull policy | `IfNotPresent`
@@ -48,6 +50,8 @@ Parameter | Description | Default
 `redis.port` | The port of redis, redundant if you're using internal redis | `6379`
 `redis.password` | The password of Redis | ``
 `redis.db` | The DB of Redis | `0`
+`redis.internal.sercice.type` | The service type to be used | `ClusterIP`
+`redis.internal.sercice.annotations` | The annotations used in the service | `{}`
 `redis.internal.image.repository` | container image repository | `redis`
 `redis.internal.image.tag` | container image tag | `5.0.7`
 `redis.internal.image.pullPolicy` | container image pull policy | `IfNotPresent`
@@ -58,8 +62,10 @@ Parameter | Description | Default
 | **Ingress** |
 `ingress.api.annotations` | The annotations used in ingress | `{}`
 `ingress.api.host` | The host of Statusbay ingress api | `api.statusbay.domain`
+`ingress.api.use_tls` | If Ingress should configure a TLS for this host | `false`
 `ingress.ui.annotations` | The annotations used in ingress for the UI | `{}`
 `ingress.ui.host` | The host of StatusBay ingress UI | `statusbay.domain`
+`ingress.ui.use_tls` | If Ingress should configure a TLS for this host | `false`
 | **Service** |
 `service.api.type` | The type of api service to create  | `ClusterIP`
 `service.api.annotations` | The annotations used in api service | `{}`
@@ -88,8 +94,8 @@ Parameter | Description | Default
 `api.annotations` | The annotations used in api deployment | `{}`
 `api.application.log.level` | The application log level | `info`
 `api.application.log.gelf_address` | The address for ship the log out for external system | undefined
-`api.application.metrics.datadog.api_key` | The datadog provider api key | 
-`api.application.metrics.datadog.app_key` | The datadog provider app key |  
+`api.application.metrics.datadog.api_key` | The datadog provider api key |
+`api.application.metrics.datadog.app_key` | The datadog provider app key |
 `api.application.metrics.datadog.cache_expiration` | The metric response cache expiration | undefined
 `api.application.metrics.prometheus.address` | The prometheus address | undefined
 `api.application.alerts.statuscake.endpoint` | The Statuscake endpoint | undefined

@@ -13,8 +13,9 @@ database:
   schema: statusbay
 
   internal:
-    annotations: {}
-    # type: ClusterIP
+    service:
+      annotations: {}
+      # type: ClusterIP
     image:
       repository: mysql
       tag: 5.7
@@ -38,6 +39,9 @@ redis:
   db: 0
 
   internal:
+    service:
+      annotations: {}
+      # type: ClusterIP
     image:
       repository: redis
       tag: 5.0.7

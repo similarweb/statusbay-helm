@@ -6,13 +6,13 @@ metadata:
   labels:
 {{ include "statusbay.labels" . | indent 4 }}
   annotations:
-{{- if .Values.database.internal.annotations }}
-{{ toYaml .Values.database.internal.annotations | indent 4 }}
+{{- if .Values.database.internal.service.annotations }}
+{{ toYaml .Values.database.internal.service.annotations | indent 4 }}
 {{- end }}
 {{ include "statusbay.annotations" . | indent 4 }}
 spec:
-{{- if .Values.database.internal.type }}
-  type: {{ .Values.database.internal.type }}
+{{- if .Values.database.internal.service.type }}
+  type: {{ .Values.database.internal.service.type }}
 {{- end }}
   selector:
 {{ include "statusbay.matchLabels" . | indent 4 }}
