@@ -6,8 +6,14 @@ metadata:
   labels:
 {{ include "statusbay.labels" . | indent 4 }}
   annotations:
+{{- if .Values.redis.internal.service.annotations }}
+{{ toYaml .Values.redis.internal.service.annotations | indent 4 }}
+{{- end }}
 {{ include "statusbay.annotations" . | indent 4 }}
 spec:
+{{- if .Values.redis.internal.service.type }}
+  type: {{ .Values.redis.internal.service.type }}
+{{- end }}
   selector:
 {{ include "statusbay.matchLabels" . | indent 4 }}
     component: redis
