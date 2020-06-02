@@ -13,6 +13,9 @@ database:
   schema: statusbay
 
   internal:
+    service:
+      annotations: {}
+      # type: ClusterIP
     image:
       repository: mysql
       tag: 5.7
@@ -22,9 +25,9 @@ database:
        memory: 256Mi
        cpu: 100m
     persistence:
-      persistentVolumeClaim:      
+      persistentVolumeClaim:
         accessMode: ReadWriteOnce
-        storageClass: "-" 
+        storageClass: "-"
         size: 1Gi
 
 redis:
@@ -32,10 +35,13 @@ redis:
 
   host: 127.0.0.1 # Redundent if using internal
   port: 6379 # Redundent if using internal
-  password: 
+  password:
   db: 0
 
   internal:
+    service:
+      annotations: {}
+      # type: ClusterIP
     image:
       repository: redis
       tag: 5.0.7
@@ -45,18 +51,20 @@ redis:
        memory: 256Mi
        cpu: 100m
     persistence:
-      persistentVolumeClaim:      
+      persistentVolumeClaim:
         accessMode: ReadWriteOnce
-        storageClass: "-" 
+        storageClass: "-"
         size: 1Gi
 
 ingress:
   api:
     annotations: {}
     host: api.statusbay.domain
+    # use_tls: false
   ui:
     annotations: {}
     host: statusbay.domain
+    # use_tls: false
 
 service:
   api:
@@ -66,33 +74,31 @@ service:
   ui:
     type: ClusterIP
     annotations: {}
-    externalPort: 80    
+    externalPort: 80
 
 rbac:
   create: true
 
 serviceAccount:
   create: true
-  name: 
+  name:
 
 ui:
   create: true
-  
-  # For now we have not supporting multiple UI instances.
-  replicas: 1
+  replicas: 3
   annotations: {}
-  
+
   image:
     repository: similarweb/statusbay-ui
     tag: 0.1.6
     pullPolicy: IfNotPresent
-  
+
   # environmentVars is a list of  enviroment variables to set with the UI deployment. These could be
   # used to set API_URL (using helm configured in helpers),GELF ADDRESS & LOG_LEVEL.
   environmentVars:
     GELF_ADDRESS: 127.0.0.1
     LOG_LEVEL: INFO
-  
+
   resources:
     requests:
       cpu: 100m
@@ -102,10 +108,31 @@ api:
   create: true
   replicas: 2
   annotations: {}
-  application:    
+  application:
     log:
       level: INFO
       # gelf_address: 127.0.0.1
+    telemetry:
+      # flush_interval: 10
+      # allowed_prefixes:
+      #   - 'abc'
+      #   - 'def'
+      # blocked_prefixes:
+      #   - 'abc'
+      #   - 'def'
+      # disable_hostname: true
+      # metrics_prefix: ''
+
+      # dogstatsd_addr: ''
+      # datadog_tags:
+      #   - 'tag1:value1'
+      #   - 'tag2:value2'
+
+      # allow_metrics_by_default: true
+
+      # prometheus_retention_time_sec: 3600
+      # statsd_address: ''
+      # statsite_address: ''
     metrics:
       # datadog:
       #   api_key: example-api-key
@@ -135,6 +162,27 @@ watcher:
       log:
         level: INFO
         # gelf_address: 127.0.0.1
+      telemetry:
+        # flush_interval: 10
+        # allowed_prefixes:
+        #   - 'abc'
+        #   - 'def'
+        # blocked_prefixes:
+        #   - 'abc'
+        #   - 'def'
+        # disable_hostname: true
+        # metrics_prefix: ''
+
+        # dogstatsd_addr: ''
+        # datadog_tags:
+        #   - 'tag1:value1'
+        #   - 'tag2:value2'
+
+        # allow_metrics_by_default: true
+
+        # prometheus_retention_time_sec: 3600
+        # statsd_address: ''
+        # statsite_address: ''
       applies:
         save_interval: 2s
         max_apply_time: 10m

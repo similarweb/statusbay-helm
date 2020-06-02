@@ -24,6 +24,8 @@ data:
       slack:
         {{- toYaml .Values.watcher.kubernetes.application.slack | nindent 8 }}
     {{- end }}
+    telemetry:
+      {{- toYaml .Values.watcher.kubernetes.application.telemetry | nindent 6 }}
     ui:
       base_url: {{ .Values.ingress.ui.host }}
       {{- if .Values.watcher.kubernetes.application.ui }}

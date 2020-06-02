@@ -6,8 +6,8 @@ metadata:
   labels:
 {{ include "statusbay.labels" . | indent 4 }}
   annotations:
-{{- if .Values.service.annotations }}
-{{ toYaml .Values.service.annotations | indent 4 }}
+{{- if .Values.service.api.annotations }}
+{{ toYaml .Values.service.api.annotations | indent 4 }}
 {{- end }}
 {{ include "statusbay.annotations" . | indent 4 }}
 spec:
