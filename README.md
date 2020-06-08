@@ -35,8 +35,8 @@ Parameter | Description | Default
 `database.username` | The username of database | `statusbay`
 `database.password` | The password of database | `changeme`
 `database.schema` | The schema name of database | `statusbay`
-`database.internal.sercice.type` | The service type to be used | `ClusterIP`
-`database.internal.sercice.annotations` | The annotations used in the service | `{}`
+`database.internal.service.type` | The service type to be used | `ClusterIP`
+`database.internal.service.annotations` | The annotations used in the service | `{}`
 `database.internal.image.repository` | container image repository | `mysql`
 `database.internal.image.tag` | container image tag | `5.7`
 `database.internal.image.pullPolicy` | container image pull policy | `IfNotPresent`
@@ -50,8 +50,8 @@ Parameter | Description | Default
 `redis.port` | The port of redis, redundant if you're using internal redis | `6379`
 `redis.password` | The password of Redis | ``
 `redis.db` | The DB of Redis | `0`
-`redis.internal.sercice.type` | The service type to be used | `ClusterIP`
-`redis.internal.sercice.annotations` | The annotations used in the service | `{}`
+`redis.internal.service.type` | The service type to be used | `ClusterIP`
+`redis.internal.service.annotations` | The annotations used in the service | `{}`
 `redis.internal.image.repository` | container image repository | `redis`
 `redis.internal.image.tag` | container image tag | `5.0.7`
 `redis.internal.image.pullPolicy` | container image pull policy | `IfNotPresent`
