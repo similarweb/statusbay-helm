@@ -31,7 +31,7 @@ database:
         size: 1Gi
 
 redis:
-  type: internal
+  type: internal  
 
   host: 127.0.0.1 # Redundent if using internal
   port: 6379 # Redundent if using internal
