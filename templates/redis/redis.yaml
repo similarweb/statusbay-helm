@@ -1,4 +1,4 @@
-{{- if and eq .Values.redis.type "internal") (.Values.api.create)  }}
+{{- if and (eq .Values.redis.type "internal") (.Values.api.create)  }}
 {{- $redis := .Values.redis -}}
 apiVersion: apps/v1
 kind: StatefulSet
