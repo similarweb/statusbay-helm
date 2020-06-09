@@ -23,7 +23,6 @@ spec:
 {{ include "statusbay.labels" . | indent 8 }}
         component: {{ include "statusbay.fullname" . }}-api
     spec:
-      serviceAccountName: {{ template "statusbay.serviceAccountName" . }}
       containers:
         - name: {{ .Chart.Name }}-api
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
