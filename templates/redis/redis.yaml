@@ -43,6 +43,10 @@ spec:
             port: 6379
           initialDelaySeconds: 1
           periodSeconds: 10
+{{- if $redis.internal.resources }}
+        resources:
+{{ toYaml $redis.internal.resources | indent 10 }}
+{{- end }}          
   volumeClaimTemplates:
   - metadata:
       name: data

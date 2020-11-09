@@ -62,6 +62,10 @@ spec:
           initialDelaySeconds: 5
           periodSeconds: 2
           timeoutSeconds: 1
+{{- if $database.internal.resources }}
+        resources:
+{{ toYaml $database.internal.resources | indent 10 }}
+{{- end }}
   volumeClaimTemplates:
   - metadata:
       name: data
