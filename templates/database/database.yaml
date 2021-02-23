@@ -8,6 +8,9 @@ metadata:
 {{ include "statusbay.labels" . | indent 4 }}
     component: database
   annotations:
+{{- if .Values.database.internal.annotations }}
+{{ toYaml .Values.database.internal.annotations | indent 4 }}
+{{- end }}  
 {{ include "statusbay.annotations" . | indent 4 }}
 spec:
   selector:

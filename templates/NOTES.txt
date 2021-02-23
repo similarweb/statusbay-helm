@@ -47,7 +47,7 @@ Get the URL for the StatusBay UI:
     Then you should be able to visit StatusBay at {{ .Values.ingress.ui.host }}.
 
 {{- end }}
-
+ 
 
 Container Versions:
 
