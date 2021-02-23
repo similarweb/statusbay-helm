@@ -22,6 +22,11 @@ spec:
       labels:
 {{ include "statusbay.labels" . | indent 8 }}
         component: {{ include "statusbay.fullname" . }}-watcher-kubernetes
+      annotations:
+{{- if .Values.watcher.kubernetes.annotations }}
+{{ toYaml .Values.watcher.kubernetes.annotations | indent 8}}
+{{- end }}
+{{ include "statusbay.annotations" . | indent 8 }}
     spec:
       serviceAccountName: {{ template "statusbay.serviceAccountName" . }}
       containers:

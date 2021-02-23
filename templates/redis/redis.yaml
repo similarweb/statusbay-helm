@@ -21,9 +21,14 @@ spec:
   replicas: 1
   template:
     metadata:
-       labels:
+      labels:
 {{ include "statusbay.labels" . | indent 8 }}
         component: redis
+      annotations:
+{{- if .Values.redis.internal.annotations }}
+{{ toYaml .Values.redis.internal.annotations | indent 8 }}
+{{- end }}  
+{{ include "statusbay.annotations" . | indent 8 }}        
     spec:
       containers:
       - name: redis
