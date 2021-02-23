@@ -8,6 +8,9 @@ metadata:
 {{ include "statusbay.labels" . | indent 4 }}
     component: redis
   annotations:
+{{- if .Values.redis.internal.annotations }}
+{{ toYaml .Values.redis.internal.annotations | indent 4 }}
+{{- end }}  
 {{ include "statusbay.annotations" . | indent 4 }}
 spec:
   selector:

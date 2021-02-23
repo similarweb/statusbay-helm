@@ -13,6 +13,7 @@ database:
   schema: statusbay
 
   internal:
+    annotations: {}
     service:
       annotations: {}
       # type: ClusterIP
@@ -39,6 +40,7 @@ redis:
   db: 0
 
   internal:
+    annotations: {}
     service:
       annotations: {}
       # type: ClusterIP
