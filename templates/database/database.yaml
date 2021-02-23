@@ -21,9 +21,14 @@ spec:
   replicas: 1
   template:
     metadata:
-       labels:
+      labels:
 {{ include "statusbay.labels" . | indent 8 }}
         component: database
+      annotations:
+{{- if .Values.database.internal.annotations }}
+{{ toYaml .Values.database.internal.annotations | indent 8 }}
+{{- end }}  
+{{ include "statusbay.annotations" . | indent 8 }}      
     spec:
       containers:
       - name: mysql
