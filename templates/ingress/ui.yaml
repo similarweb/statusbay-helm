@@ -15,7 +15,7 @@ spec:
     - host: {{ .Values.ingress.ui.host }}
       http:
         paths:
-          - path: /
+          - path: {{ .Values.ingress.ui.path | default "/" }}
             backend:
               serviceName: {{ include "statusbay.fullname" . }}-ui
               servicePort: {{ .Values.service.ui.externalPort }}
