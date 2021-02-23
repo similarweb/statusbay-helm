@@ -8,6 +8,8 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: Install
+        env:
+          SPECTRAL_DSN: ${{ secrets.SPECTRAL_DSN }}
         run: curl -L https://get.spectralops.io/latest/sh | sudo sh
       - name: Scan
         run: spectral run
