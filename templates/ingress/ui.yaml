@@ -1,5 +1,5 @@
 {{- if .Values.ui.create }}
-apiVersion: extensions/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: {{ template "statusbay.fullname" . }}-ui
@@ -16,9 +16,12 @@ spec:
       http:
         paths:
           - path: {{ .Values.ingress.ui.path | default "/" }}
+            pathType: Prefix
             backend:
-              serviceName: {{ include "statusbay.fullname" . }}-ui
-              servicePort: {{ .Values.service.ui.externalPort }}
+              service:
+                name: {{ include "statusbay.fullname" . }}-ui
+                port:
+                  number: {{ .Values.service.ui.externalPort }}
 {{- if .Values.ingress.ui.use_tls }}
   tls:
     - hosts:
