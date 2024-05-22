@@ -11,6 +11,9 @@ metadata:
 {{- end }}
 {{ include "statusbay.annotations" . | indent 4 }}
 spec:
+{{- if .Values.ingress.ui.ingressClassName }}
+  ingressClassName: {{ .Values.ingress.ui.ingressClassName }}
+{{- end }}
   rules:
     - host: {{ .Values.ingress.api.host }}
       http:

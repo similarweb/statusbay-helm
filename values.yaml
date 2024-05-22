@@ -62,10 +62,12 @@ ingress:
   api:
     annotations: {}
     host: api.statusbay.domain
+    # ingressClassName: ''
     # use_tls: false
   ui:
     annotations: {}
     host: statusbay.domain
+    # ingressClassName: ''
     # use_tls: false
 
 service:
