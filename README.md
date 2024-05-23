@@ -26,7 +26,7 @@ The following table lists the configurable parameters of the Statusbay chart.
 Parameter | Description | Default
 --------- | ----------- | -------
 `image.repository` | container image repository | `similarweb/statusbay`
-`image.tag` | container image tag | `v1.1`
+`image.tag` | container image tag | `0.1.6`
 `image.pullPolicy` | container image pull policy | `IfNotPresent`
 | **Database** |
 `database.type` | `internal` or `external`, internal would start a statefullset with MySQL | `internal`
@@ -64,9 +64,11 @@ Parameter | Description | Default
 | **Ingress** |
 `ingress.api.annotations` | The annotations used in ingress | `{}`
 `ingress.api.host` | The host of Statusbay ingress api | `api.statusbay.domain`
+`ingress.api.ingressClassName` | Name for ingress class if not using default | undefined
 `ingress.api.use_tls` | If Ingress should configure a TLS for this host | `false`
 `ingress.ui.annotations` | The annotations used in ingress for the UI | `{}`
 `ingress.ui.host` | The host of StatusBay ingress UI | `statusbay.domain`
+`ingress.ui.ingressClassName` | Name for ingress class if not using default | undefined
 `ingress.ui.use_tls` | If Ingress should configure a TLS for this host | `false`
 | **Service** |
 `service.api.type` | The type of api service to create  | `ClusterIP`
@@ -85,7 +87,7 @@ Parameter | Description | Default
 `ui.replicas` | The replica count of the UI webserver | `2`
 `ui.annotations` | The annotations to be used in the UI deployment | `{}`
 `ui.image.repository` | UI container image repository | `similarweb/statusbay-ui`
-`ui.image.tag` | UI container image tag | `dev`
+`ui.image.tag` | UI container image tag | `0.1.6`
 `ui.image.pullPolicy` | container image pull policy | `IfNotPresent`
 `ui.application.log.level` | The UI application log level | `info`
 `ui.application.log.gelf_address` | The address to ship logs to an external system | undefined
