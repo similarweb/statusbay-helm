@@ -22,9 +22,9 @@ database:
       tag: 5.7
       pullPolicy: IfNotPresent
     resources:
-     requests:
-       memory: 256Mi
-       cpu: 100m
+      requests:
+        memory: 256Mi
+        cpu: 100m
     persistence:
       persistentVolumeClaim:
         accessMode: ReadWriteOnce
@@ -49,9 +49,9 @@ redis:
       tag: 5.0.7
       pullPolicy: IfNotPresent
     resources:
-     requests:
-       memory: 256Mi
-       cpu: 100m
+      requests:
+        memory: 256Mi
+        cpu: 100m
     persistence:
       persistentVolumeClaim:
         accessMode: ReadWriteOnce
