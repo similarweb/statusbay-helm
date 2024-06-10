@@ -28,6 +28,7 @@ Parameter | Description | Default
 `image.repository` | container image repository | `similarweb/statusbay`
 `image.tag` | container image tag | `0.1.6`
 `image.pullPolicy` | container image pull policy | `IfNotPresent`
+`extraManifests` | a list of extra Kubernetes manifests that will be deployed alongside the chart | `[]`
 | **Database** |
 `database.type` | `internal` or `external`, internal would start a statefullset with MySQL | `internal`
 `database.host` | The hostname of database, redundant if you're using internal database | `127.0.0.1`
