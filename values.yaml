@@ -102,7 +102,7 @@ ui:
   environmentVars:
     GELF_ADDRESS: 127.0.0.1
     LOG_LEVEL: INFO
-
+  secretVars: []
   resources:
     requests:
       cpu: 100m
@@ -152,6 +152,8 @@ api:
       # pingdom:
       #   endpoint: https://api.pingdom.com/api
       #   token: example-token
+  environmentVars: {}
+  secretVars: []
   resources:
     requests:
       cpu: 100m
@@ -161,6 +163,8 @@ watcher:
   kubernetes:
     create: true
     annotations: {}
+    environmentVars: {}
+    secretVars: []
     application:
       cluster_name: default
       log:

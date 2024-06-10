@@ -37,5 +37,6 @@ spec:
           env:
             - name: API_URL
               value: "{{ template "statusbay.fullname" . }}-api"
-            {{- include "statusbay.environmentVars" .Values.ui | nindent 12 -}}         
+            {{- include "statusbay.environmentVars" .Values.ui | trim | nindent 12 }}
+            {{- include "statusbay.secretVars" .Values.ui | trim | nindent 12 }}
 {{- end -}}
