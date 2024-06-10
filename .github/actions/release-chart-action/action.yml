@@ -1,0 +1,43 @@
+name: "Chart Releaser"
+description: "Host a Helm chart repo on GitHub Pages. Heavily borrowed from helm/chart-releaser-action."
+author: "Similarweb"
+branding:
+  color: orange
+  icon: cloud
+inputs:
+  version:
+    description: "The chart-releaser version to use (default: v1.6.1)"
+    required: false
+    default: v1.6.1
+  config:
+    description: "The relative path to the chart-releaser config file"
+    required: false
+  chart_dir:
+    description: The chart directory
+    required: false
+    default: .
+runs:
+  using: composite
+  steps:
+    - id: release
+      run: |
+        owner=$(cut -d '/' -f 1 <<< "$GITHUB_REPOSITORY")
+        repo=$(cut -d '/' -f 2 <<< "$GITHUB_REPOSITORY")
+
+        args=(--owner "$owner" --repo "$repo")
+        args+=(--chart-dir "${{ inputs.chart_dir }}")
+
+        if [[ -n "${{ inputs.version }}" ]]; then
+          args+=(--version "${{ inputs.version }}")
+        fi
+
+        if [[ -n "${{ inputs.config }}" ]]; then
+          args+=(--config "${{ inputs.config }}")
+        fi
+
+        install="$RUNNER_TOOL_CACHE/cr/${{ inputs.version }}/$(uname -m)"
+        echo "$install" >> "$GITHUB_PATH"
+        args+=(--install-dir "$install")
+
+        "$GITHUB_ACTION_PATH/cr.sh" "${args[@]}"
+      shell: bash

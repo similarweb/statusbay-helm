@@ -19,6 +19,11 @@ helm 3:
 helm install my-release .
 ```
 
+You can also directly use GitHub Pages for this repository as an Helm repository:
+```bash
+helm install my-release --repo https://similarweb.github.io/statusbay-helm/ statusbay-helm
+```
+
 ## Configuration
 
 The following table lists the configurable parameters of the Statusbay chart.
