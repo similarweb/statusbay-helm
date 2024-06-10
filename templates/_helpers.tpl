@@ -127,14 +127,20 @@ Create the name of the service account to use
 {{- .Values.redis.db -}}
 {{- end -}}
 
-{{/*
-Inject environment vars in the format key:value, if populated
-*/}}
+{{/* Inject environment vars in the format key:value, if populated */}}
 {{- define "statusbay.environmentVars" -}}
-{{- if .environmentVars -}}
-{{- range $key, $value := .environmentVars }}
+{{- range $key, $value := .environmentVars -}}
 - name: {{ $key }}
   value: {{ $value | quote }}
+{{ end -}}
 {{- end -}}
-{{- end -}}
+
+{{- define "statusbay.secretVars" -}}
+{{- range $_, $item := .secretVars -}}
+- name: {{ $item.varName }}
+  valueFrom:
+    secretKeyRef:
+      name: {{ $item.secretName }}
+      key: {{ $item.secretKey | quote }}
+{{ end -}}
 {{- end -}}

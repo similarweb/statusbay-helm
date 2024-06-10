@@ -36,6 +36,11 @@ spec:
           volumeMounts:
             - name: {{ include "statusbay.fullname" . }}-configmap-api
               mountPath: /etc/statusbay
+          {{ if or .Values.api.environmentVars .Values.api.secretVars -}}
+          env:
+            {{- include "statusbay.environmentVars" .Values.api | trim | nindent 12 }}
+            {{- include "statusbay.secretVars" .Values.api | trim | nindent 12 }}
+          {{ end -}}
           resources:
             {{- toYaml .Values.api.resources | nindent 12 }}
       volumes:
