@@ -100,7 +100,6 @@ ui:
   # environmentVars is a list of  enviroment variables to set with the UI deployment. These could be
   # used to set API_URL (using helm configured in helpers),GELF ADDRESS & LOG_LEVEL.
   environmentVars:
-    GELF_ADDRESS: 127.0.0.1
     LOG_LEVEL: INFO
   secretVars: []
   resources:
